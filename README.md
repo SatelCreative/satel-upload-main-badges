@@ -1,0 +1,1 @@
+# satel-upload-main-badges
