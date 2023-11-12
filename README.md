@@ -1,6 +1,6 @@
 # Satel Upload Main Badges 
 
-This centralized GitHub action updates the main coverage badge on the server
+This centralized GitHub action uploads the main coverage badges on the server
 
 ### Usage
 
