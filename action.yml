@@ -8,7 +8,6 @@ inputs:
     description: Badge for main branch
     required: true
 
-
 runs:
   using: "composite"
   steps:
@@ -17,9 +16,7 @@ runs:
 
       - name: Copy badge to server
         shell: bash
-        env: 
-          BADGE: ${{ inputs.badge }}
         run:  |
           REPO_NAME="${{ github.event.repository.name }}"
           rm /mnt/samba/$REPO_NAME/${{ inputs.app-name }}-main.svg  2> /dev/null || true # to avoid permissions issue, remove main files first 
-          curl -L $BADGE -o "/mnt/samba/$REPO_NAME/${{ inputs.app-name }}-main.svg"
+          curl -L "${{ inputs.badge }}" -o "/mnt/samba/$REPO_NAME/${{ inputs.app-name }}-main.svg"
