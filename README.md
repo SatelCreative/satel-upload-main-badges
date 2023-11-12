@@ -1,6 +1,6 @@
 # Satel Upload Main Badges 
 
-This centralized GitHub action updates the main coverage badge to server
+This centralized GitHub action updates the main coverage badge on the server
 
 ### Usage
 
@@ -9,16 +9,15 @@ This centralized GitHub action updates the main coverage badge to server
     needs: [poetry-redoc, generate-badges]
     timeout-minutes: 10
     if: ${{ github.ref != 'refs/heads/main' }}
-    runs-on:  ${{ contains(needs.self-hosted-status.outputs.runner-status, 'online') && 'samba' || 'ubuntu-latest' }}
+    runs-on: samba
     environment: ${{ inputs.environment }}
     env:
       BADGE: ${{ needs.generate-badges.outputs.BADGE }}
-
     steps:
         - name: upload-main-badge
           uses: SatelCreative/satel-upload-main-badges@1.0.0
           with:       
             app-name: ${{ inputs.app-name }}
-            badge: $BADGE
+            badge: "${{ env.BADGE }}"
    
 ```
